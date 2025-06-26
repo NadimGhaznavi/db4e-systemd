@@ -52,7 +52,7 @@ class Db4eSystemd:
             'raw_stderr': ''
         }
         self.service_name = service_name
-        self.status(service_name)
+        self.status()
 
     def active(self):
         """
@@ -92,8 +92,11 @@ class Db4eSystemd:
         """
         Get/Set the service_name.
         """
+        old_service_name = self.service_name
         if service_name:
             self.service_name = service_name
+            if service_name != old_service_name:
+                self.status()
         return service_name
 
     def start(self):
