@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: db4e-systemd
-Version: 1.2.1
+Version: 1.2.2
 Summary: A lightweight systemctl wrapper for Python
 Home-page: https://github.com/NadimGhaznavi/db4e-systemd
 Author: Nadim-Daniel Ghaznavi

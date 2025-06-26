@@ -1,3 +1,6 @@
+## [1.2.2] - 2025-06-26
+- BugFix: stop() wasn't returning the return code.
+
 ## [1.2.1] - 2025-06-26
 - BugFix: Included the updated code (double DOH)
 

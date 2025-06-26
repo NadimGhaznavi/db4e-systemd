@@ -164,7 +164,7 @@ class Db4eSystemd:
         """
         Stop a systemd service.
         """
-        self._run_systemd('stop')
+        return self._run_systemd('stop')
 
     def _run_systemd(self, arg):
         """
