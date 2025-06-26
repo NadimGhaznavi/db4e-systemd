@@ -1,3 +1,6 @@
+## [1.2.1] - 2025-06-26
+- BugFix: Included the updated code (double DOH)
+
 ## [1.2.0] - 2025-06-26
 - BugFix: Fixed clash between method and property (service_name) names.
 - Feature: When start(), stop(), enable() or disable() is called, return the returncode.
