@@ -1,3 +1,8 @@
+---
+title: db4e-systemd
+layout: default
+---
+
 # Introduction
 
 A lightweight Python module to interact with `systemd` services via `systemctl`, designed for use in Python-based service managers, admin tools, and dashboards.
