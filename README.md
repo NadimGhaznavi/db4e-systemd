@@ -8,16 +8,25 @@ A lightweight Python module to interact with `systemd` services via `systemctl`,
 
 * Query service status, PID, and enablement
 * Start, stop, and restart services
-* Enable and disable services (requires sudo access)
+* Enable and disable services
 * Structured output, clean API
 * Parses and interprets `systemctl` output
+
+**IMPORTANT NOTE:** All `systemctl` operations except for `sysemctl status` require root access. This module uses `sudo` to deal with this fact. It's recommended that you use a fine-grained sudo configuration. For example, the following two lines in the `/etc/sudoers` file allow the *sally* user to start and stop the *db4e* services. 
+
+```
+sally ALL=(ALL) NOPASSWD: /bin/systemctl start db4e
+sally ALL=(ALL) NOPASSWD: /bin/systemctl stop db4e
+```
+
+So a script that *sally* runs that uses this module will be successful in starting and stopping the *db4e* service, but will fail if `enable()` or `disable()` are attempted.
 
 ---
 
 # Installation
 
 ```bash
-pip install git+https://github.com/NadimGhaznavi/db4esystemd.git
+pip install db4e-systemd
 ```
 
 Or clone locally:
