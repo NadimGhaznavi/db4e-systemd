@@ -103,14 +103,14 @@ class Db4eSystemd:
         """
         Start a systemd service.
         """
-        self._run_systemd('start', self.service_name)
+        self._run_systemd('start')
 
     def status(self):
         """
         (Re)load the instance's result's dictionary.
         """
 
-        self._run_systemd('status', self.service_name)
+        self._run_systemd('status')
         stdout = self.stdout()
         stderr = self.stderr()
 
@@ -152,7 +152,7 @@ class Db4eSystemd:
         """
         Stop a systemd service.
         """
-        self._run_systemd('stop', self.service_name)
+        self._run_systemd('stop')
 
     def _run_systemd(self, arg):
         """

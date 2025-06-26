@@ -52,7 +52,7 @@ class Db4eSystemd:
             'raw_stderr': ''
         }
         self.service_name = service_name
-        self.status(service_name)
+        self.status()
 
     def active(self):
         """
@@ -92,22 +92,25 @@ class Db4eSystemd:
         """
         Get/Set the service_name.
         """
+        old_service_name = self.service_name
         if service_name:
             self.service_name = service_name
+            if service_name != old_service_name:
+                self.status()
         return service_name
 
     def start(self):
         """
         Start a systemd service.
         """
-        self._run_systemd('start', self.service_name)
+        self._run_systemd('start')
 
     def status(self):
         """
         (Re)load the instance's result's dictionary.
         """
 
-        self._run_systemd('status', self.service_name)
+        self._run_systemd('status')
         stdout = self.stdout()
         stderr = self.stderr()
 
@@ -149,7 +152,7 @@ class Db4eSystemd:
         """
         Stop a systemd service.
         """
-        self._run_systemd('stop', self.service_name)
+        self._run_systemd('stop')
 
     def _run_systemd(self, arg):
         """
