@@ -8,6 +8,7 @@ A lightweight Python module to interact with `systemd` services via `systemctl`,
 
 * Query service status, PID, and enablement
 * Start, stop, and restart services
+* Enable and disable services (requires sudo access)
 * Structured output, clean API
 * Parses and interprets `systemctl` output
 
@@ -54,6 +55,8 @@ svc = Db4eSystemd('myservice')
 svc.start()          # Start service
 svc.stop()           # Stop service
 svc.restart()        # Restart service
+svc.enable()         # Enable service startup at boot time
+svc.disable()        # Disable service startup at boot time
 svc.status()         # Refresh status
 svc.active()         # True/False
 svc.enabled()        # True/False
@@ -71,5 +74,5 @@ GPL v3 - See LICENSE.txt
 
 ---
 
-Created and maintained by Nadim-Daniel Ghaznavi. Part of the [db4e](https://github.com/NadimGhaznavi/db4e) project.
+Created and maintained by Nadim-Daniel Ghaznavi. Part of the [Database 4 Everything](https://github.com/NadimGhaznavi/db4e) project.
 
