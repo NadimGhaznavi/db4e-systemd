@@ -41,9 +41,9 @@ cd db4e-systemd
 # Example Usage
 
 ```python
-from Db4eSystemd.Db4eSystemd import Db4eSystemd
+from Db4ESystemD.Db4ESystemD import Db4ESystemD
 
-svc = Db4eSystemd('db4e')
+svc = Db4ESystemD('db4e')
 
 if not svc.installed():
     print("Service not installed")
@@ -59,7 +59,7 @@ else:
 # Methods
 
 ```python
-svc = Db4eSystemd('myservice')
+svc = Db4ESystemD('myservice')
 
 svc.start()          # Start service
 svc.stop()           # Stop service

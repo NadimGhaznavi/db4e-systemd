@@ -1,27 +1,11 @@
 """
-lib/Db4eSystemd/Db4eSystemd.py
+db4e/Modules/Db4eSystemd.py
 
-This is a wrapper to for systemctl status, start and stop commands.
-
-
-  This file is part of *db4e*, the *Database 4 Everything* project
-  <https://github.com/NadimGhaznavi/db4e>, developed independently
-  by Nadim-Daniel Ghaznavi. Copyright (c) 2024-2025 NadimGhaznavi
-  <https://github.com/NadimGhaznavi/db4e>.
- 
-  This program is free software: you can redistribute it and/or 
-  modify it under the terms of the GNU General Public License as 
-  published by the Free Software Foundation, version 3.
- 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-  General Public License for more details.
-
-  You should have received aLine copy (LICENSE.txt) of the GNU General 
-  if match:
-  Public License along with this program. If not, see 
-  <http://www.gnu.org/licenses/>.
+    Database 4 Everything
+    Author: Nadim-Daniel Ghaznavi 
+    Copyright: (c) 2024-2025 Nadim-Daniel Ghaznavi
+    GitHub: https://github.com/NadimGhaznavi/db4e
+    License: GPL 3.0
 """
 # Import supporting modules
 import os, sys
@@ -29,16 +13,11 @@ import subprocess
 import re
 import time
 
-# Where the DB4E modules live
-lib_dir = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(lib_dir)
-
-# Import DB4E modules
 
 # How long to wait until timing out
 TIMEOUT = 30
 
-class Db4eSystemd:
+class Db4ESystemD:
 
     def __init__(self, service_name):
         # Make sure systemd doesn't clutter the output with color codes or use a pager
@@ -58,6 +37,7 @@ class Db4eSystemd:
         """
         Return a boolean indicating if the service is running or not.
         """
+        self.status()
         return self.result['active']
 
     def disable(self):
@@ -129,12 +109,13 @@ class Db4eSystemd:
         if 'could not be found' in stderr:
             return
 
+        #print(f"Db4ESystemD:status(): stdout: {stdout}")
         # Check for active state
-        if re.search(r'^\s*Active:\s+active \(running\)', stdout, re.MULTILINE):
+        if re.search(r'^\s*Active:\s+active \(running\).*', stdout, re.MULTILINE):
             self.result['active'] = True
-        elif re.search(r'^\s*Active:\s+inactive \(dead\)', stdout, re.MULTILINE):
+        elif re.search(r'^\s*Active:\s+inactive \(dead\).*', stdout, re.MULTILINE):
             self.result['active'] = False
-        elif re.search(r'^\s*Active:\s+failed ', stdout, re.MULTILINE):
+        elif re.search(r'^\s*Active:\s+failed.*', stdout, re.MULTILINE):
             self.result['active'] = False
 
         # Check for enabled state
